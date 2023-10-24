@@ -10,7 +10,6 @@ export default function MainProductCard({ item }) {
   return (
     <Card data-aos="zoom-in" className="main-product-card">
       <Card.Img variant="top" src={item.img} className="card-image" />
-
       <Card.Body>
         <Card.Title className="card-title">{item.name}</Card.Title>
         <div className="card-container">

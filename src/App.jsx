@@ -9,6 +9,7 @@ import AppBlog from "./components/blog";
 import AppContact from "./components/contact";
 import AppFooter from "./components/footer";
 import AppProducts from "./components/products";
+import AppStores from "./components/stores";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <AppHero />
         <AppAbout />
         <AppProducts />
+        <AppStores />
         <AppTestimonials />
         <AppBlog />
         <AppContact />

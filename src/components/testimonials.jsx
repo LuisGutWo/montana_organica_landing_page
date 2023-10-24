@@ -1,5 +1,4 @@
 import Container from "react-bootstrap/Container";
-import YouTube from "react-youtube";
 
 function AppTestimonials() {
   return (
@@ -7,12 +6,24 @@ function AppTestimonials() {
       <Container fluid>
         <div className="title-holder">
           <h2>Conócenos un poco mas</h2>
-          <div className="subtitle mb-5">aquí una mirada de nuestro concepto</div>
-          <YouTube videoId="AhvNSJ7eGro" autoplay={true} fluid />
+          <div className="subtitle mb-5">
+            aquí una mirada de nuestro concepto
+          </div>
+        </div>
+        <div className="text-center video-container">
+          <iframe
+            width="100%"
+            height="492"
+            src="https://www.youtube.com/embed/AhvNSJ7eGro"
+            title="Montaña Organica"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
         </div>
       </Container>
     </section>
-  );
+  );                      
 }
 
 export default AppTestimonials;

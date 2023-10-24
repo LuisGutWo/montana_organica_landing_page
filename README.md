@@ -1,8 +1,24 @@
-# React + Vite
+# Montaña Organica</>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Contents
 
-Currently, two official plugins are available:
+Landing page corporativo creado para la empresa de productos naturales Montaña Organica. Elaborado en React Js, Node.js, Vite y React-Bootstrap.
+ Buscamos darle las herramientas básicas para que pueda dar a conocer sus productos a mas personas de una manera rápida y eficiente, minimalist e intuitiva al usuario.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Website
+
+Link : <https://awesome-github-readme-profile.netlify.app>
+![Alt text](src/assets/images/montana_organica_screenshot.png)
+
+## Tecnologías utilizadas
+
+- [ ] [Html](Html)
+- [ ] [Css](Css)
+- [ ] [Sass](Sass)
+- [ ] [React](React)
+- [ ] [JavaScript](JavaScript)
+- [ ] [Bootstrap](Bootstrap)
+- [ ] [Material_UI](Material-UI)
+- [ ] [Animated.css](Animated.css)
+- [ ] [AOS](AOS-Scroll-Animation)
+- [ ] [EmailJs](EmailJs)
