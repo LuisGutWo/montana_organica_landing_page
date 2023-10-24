@@ -7,7 +7,6 @@ Landing page corporativo creado para la empresa de productos naturales Montaña 
 
 ## Website
 
-Link : <https://awesome-github-readme-profile.netlify.app>
 ![Alt text](src/assets/images/montana_organica_screenshot.png)
 
 ## Tecnologías utilizadas
