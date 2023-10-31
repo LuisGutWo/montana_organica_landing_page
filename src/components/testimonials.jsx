@@ -16,14 +16,13 @@ function AppTestimonials() {
             height="492"
             src="https://www.youtube.com/embed/AhvNSJ7eGro"
             title="Montaña Organica"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
       </Container>
     </section>
-  );                      
+  );
 }
 
 export default AppTestimonials;

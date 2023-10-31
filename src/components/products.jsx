@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Button, NavLink, Navbar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import axios from "axios";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -11,20 +12,32 @@ AOS.init();
 
 function AppProducts() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("todos");
 
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(import.meta.env.VITE_URL);
+      const data = await response.json();
+      setData(data);
+      setCategories(["todos", ...new Set(data.map((item) => item.category))]);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetch(import.meta.env.VITE_URL)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setData(data);
-        setCategories(["todos", ...new Set(data.map((item) => item.category))]);
-      });
+    fetchData();
   }, []);
+
+  if (loading) return <span class="loader"></span>;
+  if (error) return <div>Error: {error.message}</div>;
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -39,6 +52,13 @@ function AppProducts() {
         .filter((item) => searchData(item, search));
     }
   };
+  // useEffect(() => {
+  //   axios.get(import.meta.env.VITE_URL).then((res) => {
+  //     const data = res.data;
+  //     setData(data);
+  //     setCategories(["todos", ...new Set(data.map((item) => item.category))]);
+  //   });
+  // }, []);
 
   const filteredProduct = filteredData().map((item) => (
     <MainProductCard key={item.id} item={item} />
@@ -55,6 +75,7 @@ function AppProducts() {
           type="text"
           className="form-control"
           placeholder="Buscar producto"
+          value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <Navbar className="products-buttons-section">
