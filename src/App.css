@@ -47,7 +47,7 @@ h1 {
 }
 
 h2 {
-  font-size: 30px;
+  font-size: 28px;
 }
 
 h3 {
@@ -334,6 +334,7 @@ textarea {
 }
 
 #header .navbar-top {
+  overflow: hidden;
   margin: 0;
   height: 30px;
   padding: 0.2%;
@@ -420,7 +421,9 @@ textarea {
 }
 
 #header .navbar-brand img {
-  width: 120px;
+  width: 25%;
+  animation: heartBeat infinite;
+  animation-duration: 10s;
 }
 
 #header .navbar-collapse {
@@ -428,7 +431,7 @@ textarea {
 }
 
 #header .navbar-collapse .navbar-nav {
-  font-size: 20px;
+  font-size: 100%;
   line-height: 20px;
 }
 
@@ -566,7 +569,7 @@ textarea {
 }
 
 .hero-block {
-  margin-top: 9.3rem;
+  margin-top: 8.5%;
 }
 
 .hero-block .carousel-item:before {
@@ -594,7 +597,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(7, 7, 7, 0.95);
+  color: rgba(69, 69, 69, 0.95);
   background-color: #4d4d4d3d;
   font-variant: small-caps;
   font-weight: 400;
@@ -947,14 +950,21 @@ textarea {
   }
 
   #header .navbar-brand img {
-    width: 70px;
+    width: 18%;
     padding: 0;
     margin: 0;
   }
 
+  #header .navbar-collapse {
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+  }
+
   #header .navbar-collapse .navbar-nav {
     float: none;
-    font-size: 14px;
+    font-size: 100%;
   }
 
   #header .navbar-collapse .nav-item {
@@ -963,7 +973,7 @@ textarea {
     padding: 7px 0;
   }
   .hero-block {
-    margin-top: 5.8rem;
+    margin-top: 20%;
   }
 
   .hero-block .carousel-caption {

@@ -52,13 +52,6 @@ function AppProducts() {
         .filter((item) => searchData(item, search));
     }
   };
-  // useEffect(() => {
-  //   axios.get(import.meta.env.VITE_URL).then((res) => {
-  //     const data = res.data;
-  //     setData(data);
-  //     setCategories(["todos", ...new Set(data.map((item) => item.category))]);
-  //   });
-  // }, []);
 
   const filteredProduct = filteredData().map((item) => (
     <MainProductCard key={item.id} item={item} />
