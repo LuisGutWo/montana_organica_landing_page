@@ -1,5 +1,9 @@
 # Montaña Organica
 
+## Image
+
+![Alt text](src/assets/images/montana_organica_screenshot.png)
+
 ## Contents
 
 Landing page corporativo creado para la empresa de productos naturales Montaña Organica. Elaborado en React Js, Node.js, Vite y React-Bootstrap.
@@ -8,8 +12,6 @@ Landing page corporativo creado para la empresa de productos naturales Montaña 
 ## Website
 
 ![Deployed site](https://montanaorganicaperu.netlify.app/)
-
-![Alt text](src/assets/images/montana_organica_screenshot.png)
 
 ## Tecnologías utilizadas
 
