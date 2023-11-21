@@ -11,7 +11,7 @@ Landing page corporativo creado para la empresa de productos naturales Montaña 
 
 ## Website
 
-![Deployed site](https://montanaorganicaperu.netlify.app/)
+[Visita mi web](https://montanaorganicaperu.netlify.app/)
 
 ## Tecnologías utilizadas
 
