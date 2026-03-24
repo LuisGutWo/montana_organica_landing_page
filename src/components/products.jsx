@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { Button, NavLink, Navbar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
