@@ -38,7 +38,7 @@ const blogData = [
     time: "07 Nov 2016",
     title: "¿Por qué promover la alimentación saludable en el Perú?",
     description:
-      "El Perú es reconocido en el mundo por la calidad de su gastronomía y por una amplia agrobiodiversidad. Pero, esto no se traduce en un mayor acceso de la población a una alimentación saludable.",
+      "El Perú es reconocido en el mundo por la calidad de su gastronomía y por una amplia agro-industria y por su bodiversidad. Pero, esto no se traduce en un mayor acceso de la población a una alimentación saludable.",
     link: "https://especial.elcomercio.pe/perusostenible/por-que-promover-la-alimentacion-saludable-en-el-peru/",
   },
 ];

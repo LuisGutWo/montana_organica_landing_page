@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import shape1 from "../assets/images/footer-v1-shape1.png";
 import shape2 from "../assets/images/footer-v1-shape2.png";
@@ -57,6 +57,7 @@ function AppFooter() {
               <a
                 href="https://www.facebook.com/MontanaOrganicaPeru/"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <i className="fab fa-facebook-f"></i>
               </a>

@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import { Button, NavLink, Navbar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import axios from "axios";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 import MainProductCard from "./MainProductCard";
 AOS.init();
+
+const PRODUCTS_URL = "/products.json";
 
 function AppProducts() {
   const [data, setData] = useState([]);
@@ -21,7 +22,12 @@ function AppProducts() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch(import.meta.env.VITE_URL);
+      const response = await fetch(PRODUCTS_URL);
+
+      if (!response.ok) {
+        throw new Error("No se pudo cargar el catálogo local de productos");
+      }
+
       const data = await response.json();
       setData(data);
       setCategories(["todos", ...new Set(data.map((item) => item.category))]);
@@ -36,7 +42,7 @@ function AppProducts() {
     fetchData();
   }, []);
 
-  if (loading) return <span class="loader"></span>;
+  if (loading) return <span className="loader"></span>;
   if (error) return <div>Error: {error.message}</div>;
 
   const searchData = (item, search) => {

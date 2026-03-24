@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "react-bootstrap/Card";
 import { formatPrice } from "../components/formatPrice";
 
@@ -7,9 +6,11 @@ import "aos/dist/aos.css";
 AOS.init();
 
 export default function MainProductCard({ item }) {
+  const imageSrc = encodeURI(item.img);
+
   return (
     <Card data-aos="zoom-in" className="main-product-card">
-      <Card.Img variant="top" src={item.img} className="card-image" />
+      <Card.Img variant="top" src={imageSrc} className="card-image" />
       <Card.Body>
         <Card.Title className="card-title">{item.name}</Card.Title>
         <div className="card-container">
