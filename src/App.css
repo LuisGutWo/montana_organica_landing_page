@@ -1,3 +1,94 @@
+/* === Stores Carousel Moderno === */
+.stores-swiper-modern {
+  padding: 2.5rem 0 3.5rem 0;
+}
+.stores-wrapper {
+  background: var(--color-bg);
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 24px var(--color-shadow);
+  padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stores-wrapper img {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0.5rem;
+  object-fit: contain;
+  background: none;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  transition: none;
+}
+.store-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-primary-dark);
+  letter-spacing: 0.2px;
+  margin-top: 0.1rem;
+  text-shadow: none;
+  text-align: center;
+}
+.stores-swiper-modern .swiper-pagination-bullet {
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--color-primary-transparent);
+  opacity: 1;
+  margin: 0 0.3rem !important;
+}
+.stores-swiper-modern .swiper-pagination-bullet-active {
+  background: var(--color-primary);
+  opacity: 1;
+}
+.hero-carousel-cta-wrapper--right {
+  left: 60% !important;
+  transform: translateX(-10%) !important;
+}
+/* Hero Carousel Mejoras UX/UI */
+.hero-carousel-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hero-carousel-img-wrapper img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.hero-carousel-cta-wrapper {
+  position: absolute;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+  z-index: 2;
+  text-align: center;
+}
+.hero-carousel-cta {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  padding: 0.7rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+.hero-carousel-cta:hover,
+.hero-carousel-cta:focus {
+  background: var(--color-primary);
+  color: var(--color-footer-text);
+  box-shadow: 0 4px 16px var(--color-shadow);
+  outline: none;
+}
 /* === Variables de color === */
 :root {
   /* Agrega más variables según sea necesario */
@@ -725,7 +816,7 @@ textarea {
   justify-content: center;
   align-items: center;
   color: var(--color-navbar-link);
-  background-color: var(--color-navbar-link);
+  background-color: transparent;
   font-variant: small-caps;
   font-weight: 400;
   height: 3rem;
@@ -744,7 +835,7 @@ textarea {
 .swiper-slide img {
   display: block;
   width: 70%;
-  padding: 3rem;
+  padding: 0.5rem;
 }
 
 .testimonials-block {
