@@ -3,8 +3,40 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarLogo from "../assets/images/montana-organica-500x500.png";
 import "animate.css";
+import { useEffect } from "react";
 
 function AppHeader() {
+  useEffect(() => {
+    const navbarTop = document.querySelector(".navbar-top");
+    const mainNavbar = document.querySelector(".main-navbar-sticky");
+    const header = document.getElementById("header");
+    let navbarTopHeight = 0;
+    if (navbarTop) {
+      navbarTopHeight = navbarTop.offsetHeight;
+    }
+    function handleScroll() {
+      if (!navbarTop || !mainNavbar || !header) return;
+      if (window.scrollY > 60) {
+        navbarTop.style.transform = "translateY(-100%)";
+        navbarTop.style.transition = "transform 0.3s";
+        mainNavbar.classList.add("sticky-navbar");
+        mainNavbar.style.top = "0";
+        header.style.height = mainNavbar.offsetHeight + "px";
+      } else {
+        navbarTop.style.transform = "translateY(0)";
+        mainNavbar.classList.remove("sticky-navbar");
+        mainNavbar.style.top = navbarTopHeight + "px";
+        header.style.height = "";
+      }
+    }
+    // Inicializar top del mainNavbar
+    if (mainNavbar && navbarTop) {
+      mainNavbar.style.top = navbarTop.offsetHeight + "px";
+    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <section className="navbar-top">
@@ -40,12 +72,12 @@ function AppHeader() {
           </section>
         </Container>
       </section>
-      <Navbar bg="light" expand="lg">
-        <Container>
+      <Navbar bg="light" expand="lg" className="main-navbar-sticky">
+        <Container fluid>
           <Navbar.Brand href="#home">
             <img src={NavbarLogo} alt="" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="#home">Home</Nav.Link>

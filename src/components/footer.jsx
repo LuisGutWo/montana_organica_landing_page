@@ -75,8 +75,10 @@ function AppFooter() {
           </ul>
         </div>
         <div className="copyright">
-          &copy; 2023 Montaña Organica. LGWebmedia Todos los derechos
-          reservados.
+          <p>
+            &copy; {new Date().getFullYear()} Montaña Orgánica & LAGmedia. Todos
+            los derechos reservados.
+          </p>
         </div>
         {showTopBtn && <div className="go-top" onClick={goTop}></div>}
         <ReactWhatsappButton

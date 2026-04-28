@@ -14,13 +14,16 @@ function AppAbout() {
     <section id="about" className="block about-block">
       <Container fluid>
         <div className="title-holder">
-          <h2>Acerca de nosotros</h2>
-          <div className="subtitle">conócenos mas de cerca</div>
+          <h2>Acerca de Nosotros</h2>
+          <div className="subtitle">
+            Superalimentos orgánicos para una vida saludable
+          </div>
         </div>
         <Row>
           <Col sm={6}>
             <Image
               src={AboutImg}
+              alt="Productos orgánicos de Montaña Orgánica"
               data-aos="fade-right"
               data-aos-offset="200"
               data-aos-easing="ease-in-sine"
@@ -28,25 +31,27 @@ function AppAbout() {
           </Col>
           <Col sm={6}>
             <p>
-              Montaña orgánica es una empresa dedicada a la producción de súper
-              alimentos motivando a las personas a escoger alimentos saludables
-              para un mejor estilo y calidad de vida.
+              En <b>Montaña Orgánica</b> producimos superalimentos orgánicos
+              100% naturales, sin químicos ni aditivos. Transformamos
+              ingredientes premium en productos nutritivos que potencian tu
+              bienestar y el de tu familia.
             </p>
             <p>
-              <b>¿Por qué preferir Montaña Orgánica?</b>
+              <b>¿Por qué elegirnos?</b>
               <br />
-              Nos dedicamos a crear super alimentos de consumo diario para toda
-              la familia y poder mantener una alimentación saludable para una
-              mejor calidad de vida.
+              Cada producto es cuidadosamente elaborado con certificación
+              orgánica, libre de gluten y apto para veganos. Nos comprometemos
+              con tu salud y la sostenibilidad del planeta, ofreciendo alimentos
+              que marcan la diferencia en tu calidad de vida.
             </p>
             <br />
             <div className="progress-block">
               <img
+                alt="Certificaciones: Orgánico, Sin Gluten, Vegano"
                 data-aos="fade-left"
-                data-aos-offset="300"
+                data-aos-offset="100"
                 data-aos-easing="ease-in-sine"
                 src={AboutLogos}
-                alt=""
               />
             </div>
           </Col>
