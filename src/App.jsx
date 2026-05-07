@@ -8,8 +8,10 @@ import AppTestimonials from "./components/testimonials";
 import AppBlog from "./components/blog";
 import AppContact from "./components/contact";
 import AppFooter from "./components/footer";
+
 import AppProducts from "./components/products";
 import AppStores from "./components/stores";
+import CookieNotice from "./components/CookieNotice";
 
 function App() {
   return (
@@ -29,6 +31,7 @@ function App() {
       <footer id="footer">
         <AppFooter />
       </footer>
+      <CookieNotice />
     </div>
   );
 }

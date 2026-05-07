@@ -35,6 +35,8 @@ const heroData = [
 ];
 
 const AppHero = React.memo(function AppHero() {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const handleSelect = (selectedIndex) => setActiveIndex(selectedIndex);
   return (
     <section id="home" className="hero-block" aria-label="Hero principal">
       <Carousel
@@ -44,6 +46,8 @@ const AppHero = React.memo(function AppHero() {
         nextLabel="Siguiente banner"
         prevLabel="Banner anterior"
         aria-label="Carrusel de banners principales"
+        activeIndex={activeIndex}
+        onSelect={handleSelect}
       >
         {heroData.map((hero) => (
           <Carousel.Item key={hero.id}>
@@ -73,6 +77,15 @@ const AppHero = React.memo(function AppHero() {
                   </a>
                 </div>
               )}
+              {/* Indicador accesible de progreso */}
+              <div
+                className="visually-hidden"
+                aria-live="polite"
+                aria-atomic="true"
+                id="hero-carousel-status"
+              >
+                {`Banner ${activeIndex + 1} de ${heroData.length}`}
+              </div>
             </div>
           </Carousel.Item>
         ))}

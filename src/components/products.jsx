@@ -17,6 +17,7 @@ function AppProducts() {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState("todos");
+  const [priceRange, setPriceRange] = useState([0, 1000]);
 
   const fetchData = async () => {
     try {
@@ -49,18 +50,22 @@ function AppProducts() {
   };
 
   const filteredData = () => {
-    if (filter === "todos") {
-      return data.filter((item) => searchData(item, search));
-    } else {
-      return data
-        .filter((item) => item.category === filter)
-        .filter((item) => searchData(item, search));
+    let filtered = data;
+    if (filter !== "todos") {
+      filtered = filtered.filter((item) => item.category === filter);
     }
+    filtered = filtered.filter((item) => searchData(item, search));
+    filtered = filtered.filter((item) => {
+      const price = parseFloat(item.price);
+      return price >= priceRange[0] && price <= priceRange[1];
+    });
+    return filtered;
   };
 
   const filteredProduct = filteredData().map((item) => (
     <MainProductCard key={item.id} item={item} />
   ));
+  const noResults = filteredProduct.length === 0;
 
   return (
     <section id="products" className="block blog-block">
@@ -84,13 +89,52 @@ function AppProducts() {
               to={`/categories/${category}`}
               onClick={() => setFilter(category)}
             >
-              <Button>{category}</Button>
+              <Button
+                variant={filter === category ? "primary" : "outline-primary"}
+              >
+                {category}
+              </Button>
             </NavLink>
           ))}
         </Navbar>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}>
-          <Masonry>{filteredProduct}</Masonry>
-        </ResponsiveMasonry>
+        <div
+          className="price-filter"
+          style={{ margin: "1rem 0", textAlign: "center" }}
+        >
+          <label htmlFor="priceRange" style={{ marginRight: 8 }}>
+            Filtrar por precio:
+          </label>
+          <input
+            type="range"
+            id="priceRange"
+            min="0"
+            max="200"
+            step="1"
+            value={priceRange[1]}
+            onChange={(e) => setPriceRange([0, Number(e.target.value)])}
+            style={{ width: 200, verticalAlign: "middle" }}
+          />
+          <span style={{ marginLeft: 8 }}>Hasta S/ {priceRange[1]}</span>
+        </div>
+        {noResults ? (
+          <div
+            className="no-results-message"
+            style={{
+              textAlign: "center",
+              margin: "2rem 0",
+              color: "#a47149",
+              fontWeight: 500,
+            }}
+          >
+            No se encontraron productos para tu búsqueda.
+          </div>
+        ) : (
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 2, 750: 2, 900: 3 }}
+          >
+            <Masonry>{filteredProduct}</Masonry>
+          </ResponsiveMasonry>
+        )}
       </Container>
     </section>
   );

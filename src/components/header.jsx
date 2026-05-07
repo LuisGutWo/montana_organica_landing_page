@@ -3,9 +3,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarLogo from "../assets/images/montana-organica-500x500.png";
 import "animate.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function AppHeader() {
+  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     const navbarTop = document.querySelector(".navbar-top");
     const mainNavbar = document.querySelector(".main-navbar-sticky");
@@ -37,8 +38,17 @@ function AppHeader() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Cierra el menú si cambia a desktop
+    function handleResize() {
+      if (window.innerWidth >= 992) setExpanded(false);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <>
+    <div id="header">
       <section className="navbar-top">
         <Container fluid>
           <section className="navbar-top__left-menu">
@@ -72,26 +82,48 @@ function AppHeader() {
           </section>
         </Container>
       </section>
-      <Navbar bg="light" expand="lg" className="main-navbar-sticky">
-        <Container fluid>
-          <Navbar.Brand href="#home">
+      <Navbar
+        bg="light"
+        expand="lg"
+        className="main-navbar-sticky"
+        expanded={expanded}
+      >
+        <Container fluid className="main-navbar">
+          <Navbar.Brand href="#">
             <img src={NavbarLogo} alt="" />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle
+            aria-controls="basic-navbar-nav"
+            onClick={() => setExpanded(expanded ? false : true)}
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#about">Quienes somos</Nav.Link>
-              <Nav.Link href="#products">Productos</Nav.Link>
-              <Nav.Link href="#stores">Tiendas</Nav.Link>
-              <Nav.Link href="#testimonials">Video</Nav.Link>
-              <Nav.Link href="#blog">Blog</Nav.Link>
-              <Nav.Link href="#contact">Contacto</Nav.Link>
+              <Nav.Link href="/" onClick={() => setExpanded(false)}>
+                Inicio
+              </Nav.Link>
+              <Nav.Link href="#about" onClick={() => setExpanded(false)}>
+                Nosotros
+              </Nav.Link>
+              <Nav.Link href="#products" onClick={() => setExpanded(false)}>
+                Productos
+              </Nav.Link>
+              <Nav.Link href="#stores" onClick={() => setExpanded(false)}>
+                Tiendas
+              </Nav.Link>
+              <Nav.Link href="#testimonials" onClick={() => setExpanded(false)}>
+                Video
+              </Nav.Link>
+              <Nav.Link href="#blog" onClick={() => setExpanded(false)}>
+                Blog
+              </Nav.Link>
+              <Nav.Link href="#contact" onClick={() => setExpanded(false)}>
+                Contacto
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    </div>
   );
 }
 

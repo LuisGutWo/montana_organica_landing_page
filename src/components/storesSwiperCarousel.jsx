@@ -150,7 +150,9 @@ const StoresSwipeCarousel = () => {
                 flexDirection: "column",
                 alignItems: "center",
                 textDecoration: "none",
+                cursor: "pointer",
               }}
+              title={`Ver más sobre ${store.title}`}
             >
               <img
                 src={store.image}
@@ -159,6 +161,14 @@ const StoresSwipeCarousel = () => {
                 decoding="async"
                 fetchPriority="low"
                 aria-label={`Logo de ${store.title}`}
+                title={`Haz clic para visitar la tienda ${store.title}`}
+                style={{ transition: "transform 0.2s" }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.08)")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               />
               <div className="store-title">{store.title}</div>
             </a>

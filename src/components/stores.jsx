@@ -8,7 +8,7 @@ function AppStores() {
   return (
     <section
       id="stores"
-      className="block blog-block"
+      className="block blog-block stores-bg"
       aria-label="Tiendas y puntos de venta Montaña Orgánica"
     >
       <Container fluid>
