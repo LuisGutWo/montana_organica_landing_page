@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import shape1 from "../assets/images/footer-v1-shape1.png";
 import shape2 from "../assets/images/footer-v1-shape2.png";
 import LogoWhite from "../assets/images/montaña organica-125x125.png";
 // import ReactWhatsappButton from "react-whatsapp-button";
-import "animate.css";
 
 function AppFooter() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -29,15 +29,15 @@ function AppFooter() {
   return (
     <footer className="footer-one" aria-label="Pie de página Montaña Orgánica">
       <div className="shape1 float-bob-y">
-        <img src={shape1} alt="Decoración fondo Montaña Orgánica" />
+        <Image src={shape1} width={220} height={220} alt="Decoración fondo Montaña Orgánica" />
       </div>
       <div className="shape2 float-bob-y">
-        <img src={shape2} alt="Decoración fondo Montaña Orgánica" />
+        <Image src={shape2} width={220} height={220} alt="Decoración fondo Montaña Orgánica" />
       </div>
       <Container fluid>
         <section className="row justify-content-center align-items-center ps-5">
           <div className="col-lg-6 col-md-8 text-start">
-            <img
+            <Image
               src={LogoWhite}
               className="img-thumbnail animate__animated animate__pulse animate__infinite animate__slow"
               alt="Logo Montaña Orgánica"

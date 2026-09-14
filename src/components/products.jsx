@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import { Button, NavLink, Navbar } from "react-bootstrap";
+import { Button, Navbar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-import AOS from "aos";
-import "aos/dist/aos.css";
 import MainProductCard from "./MainProductCard";
-AOS.init();
 
 const PRODUCTS_URL = "/products.json";
 
@@ -42,8 +39,21 @@ function AppProducts() {
     fetchData();
   }, []);
 
-  if (loading) return <span className="loader"></span>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading) {
+    return (
+      <div className="catalog-state" role="status" aria-live="polite">
+        <span className="loader" aria-hidden="true"></span>
+        <span>Cargando productos...</span>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="catalog-state catalog-state--error" role="alert">
+        No pudimos cargar el catálogo. Intenta recargar la página.
+      </div>
+    );
+  }
 
   const searchData = (item, search) => {
     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -74,7 +84,9 @@ function AppProducts() {
           <h2>Nuestros Productos</h2>
           <div className="subtitle">conoce lo mejor de la naturaleza</div>
         </div>
+        <label className="visually-hidden" htmlFor="product-search">Buscar producto</label>
         <input
+          id="product-search"
           type="text"
           className="form-control"
           placeholder="Buscar producto"
@@ -83,28 +95,24 @@ function AppProducts() {
         />
         <Navbar className="products-buttons-section">
           {categories.map((category) => (
-            <NavLink
+            <Button
               data-aos="zoom-in"
               key={category}
-              to={`/categories/${category}`}
+              type="button"
+              aria-pressed={filter === category}
               onClick={() => setFilter(category)}
+              variant={filter === category ? "primary" : "outline-primary"}
             >
-              <Button
-                variant={filter === category ? "primary" : "outline-primary"}
-              >
-                {category}
-              </Button>
-            </NavLink>
+              {category}
+            </Button>
           ))}
         </Navbar>
-        <div
-          className="price-filter"
-          style={{ margin: "1rem 0", textAlign: "center" }}
-        >
+        <div className="price-filter">
           <label htmlFor="priceRange" style={{ marginRight: 8 }}>
             Filtrar por precio:
           </label>
           <input
+            className="price-range"
             type="range"
             id="priceRange"
             min="0"
@@ -112,20 +120,11 @@ function AppProducts() {
             step="1"
             value={priceRange[1]}
             onChange={(e) => setPriceRange([0, Number(e.target.value)])}
-            style={{ width: 200, verticalAlign: "middle" }}
           />
-          <span style={{ marginLeft: 8 }}>Hasta S/ {priceRange[1]}</span>
+          <span className="price-range-value">Hasta S/ {priceRange[1]}</span>
         </div>
         {noResults ? (
-          <div
-            className="no-results-message"
-            style={{
-              textAlign: "center",
-              margin: "2rem 0",
-              color: "#a47149",
-              fontWeight: 500,
-            }}
-          >
+          <div className="no-results-message">
             No se encontraron productos para tu búsqueda.
           </div>
         ) : (

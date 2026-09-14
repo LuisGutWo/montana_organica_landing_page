@@ -1,8 +1,9 @@
+import Image from "next/image";
+import { Clock3, Mail } from "lucide-react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavbarLogo from "../assets/images/montana-organica-500x500.png";
-import "animate.css";
 import { useEffect, useState } from "react";
 
 function AppHeader() {
@@ -53,28 +54,28 @@ function AppHeader() {
         <Container fluid>
           <section className="navbar-top__left-menu">
             <div className="inner">
-              <i className="fa-regular fa-clock text-light"></i>
+              <Clock3 aria-hidden="true" size={15} />
               <p>Lun a Sab: 24 horas</p>
             </div>
             <div className="inner">
-              <i className="fa-regular fa-envelope text-light"></i>
+              <Mail aria-hidden="true" size={15} />
               <a href="mailto:yourmail@email.com">info@montanaorganica.pe</a>
             </div>
           </section>
           <section className="navbar-top__right-menu">
             <ul className="navbar-top__social-links">
               <li>
-                <a href="#">
+                <a href="https://www.facebook.com/MontanaOrganicaPeru/" target="_blank" rel="noreferrer" aria-label="Facebook de Montaña Orgánica">
                   <i className="fa-brands fa-facebook"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.instagram.com/montanaorganicaperu/" target="_blank" rel="noreferrer" aria-label="Instagram de Montaña Orgánica">
                   <i className="fa-brands fa-instagram"></i>
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://wa.me/51960147597" target="_blank" rel="noreferrer" aria-label="WhatsApp de Montaña Orgánica">
                   <i className="fa-brands fa-whatsapp"></i>
                 </a>
               </li>
@@ -90,7 +91,7 @@ function AppHeader() {
       >
         <Container fluid className="main-navbar">
           <Navbar.Brand href="#">
-            <img src={NavbarLogo} alt="" />
+            <Image src={NavbarLogo} width={68} height={68} alt="Montaña Orgánica" />
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"

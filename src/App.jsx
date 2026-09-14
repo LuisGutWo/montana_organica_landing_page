@@ -1,6 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-
 import AppHeader from "./components/header";
 import AppHero from "./components/hero";
 import AppAbout from "./components/about";

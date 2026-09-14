@@ -1,10 +1,7 @@
+import Image from "next/image";
 import Card from "react-bootstrap/Card";
 import { formatPrice } from "../components/formatPrice";
 import PropTypes from "prop-types";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-AOS.init();
 
 export default function MainProductCard({ item }) {
   const safeItem = { ...item };
@@ -13,15 +10,14 @@ export default function MainProductCard({ item }) {
 
   return (
     <Card data-aos="zoom-in" className="main-product-card">
-      <div style={{ position: "relative" }}>
+      <div className="product-image-wrap">
         <picture>
           <source srcSet={webpSrc} type="image/webp" />
-          <Card.Img
-            variant="top"
+          <Image
             src={imageSrc}
+            width={600}
+            height={600}
             className="card-image"
-            loading="lazy"
-            decoding="async"
             sizes="(max-width: 600px) 100vw, 33vw"
             alt={safeItem.name}
             title={safeItem.name}

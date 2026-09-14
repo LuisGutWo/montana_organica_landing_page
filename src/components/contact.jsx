@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -56,7 +57,9 @@ function AppContact() {
         <Form className="contact-form" onSubmit={handleSubmit} noValidate>
           <Row>
             <Col sm={4}>
+              <Form.Label htmlFor="contact-name">Nombre completo</Form.Label>
               <Form.Control
+                id="contact-name"
                 type="text"
                 name="name"
                 placeholder="Nombre completo"
@@ -71,7 +74,9 @@ function AppContact() {
               </Form.Control.Feedback>
             </Col>
             <Col sm={4}>
+              <Form.Label htmlFor="contact-email">Correo electrónico</Form.Label>
               <Form.Control
+                id="contact-email"
                 type="email"
                 name="email"
                 placeholder="Tu correo"
@@ -86,7 +91,9 @@ function AppContact() {
               </Form.Control.Feedback>
             </Col>
             <Col sm={4}>
+              <Form.Label htmlFor="contact-phone">Número telefónico</Form.Label>
               <Form.Control
+                id="contact-phone"
                 type="tel"
                 name="phone"
                 placeholder="Número telefónico"
@@ -103,7 +110,9 @@ function AppContact() {
           </Row>
           <Row>
             <Col sm={12}>
+              <Form.Label htmlFor="contact-message">Mensaje</Form.Label>
               <Form.Control
+                id="contact-message"
                 as="textarea"
                 name="message"
                 placeholder="Ingresa tu mensaje"
@@ -142,10 +151,10 @@ function AppContact() {
             </DraggableY>
           </div>
           {error && (
-            <div style={{ color: "#e74c3c", marginTop: 10 }}>{error}</div>
+            <div className="form-message form-message--error" role="alert">{error}</div>
           )}
           {status && (
-            <div style={{ color: "#3bb77e", marginTop: 10 }}>{status}</div>
+            <div className="form-message form-message--success" role="status">{status}</div>
           )}
         </Form>
       </Container>
@@ -159,15 +168,15 @@ function AppContact() {
         <div className="contact-info">
           <ul>
             <li>
-              <i className="fas fa-envelope"></i>
+              <Mail aria-hidden="true" size={28} />
               info@montanaorganica.pe
             </li>
             <li>
-              <i className="fas fa-phone"></i>
+              <Phone aria-hidden="true" size={28} />
               960147897 / 994205250
             </li>
             <li>
-              <i className="fas fa-map-marker-alt"></i>
+              <MapPin aria-hidden="true" size={28} />
               Lima, Peru
             </li>
           </ul>

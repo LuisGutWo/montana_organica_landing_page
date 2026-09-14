@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,10 +7,7 @@ import BlogImage1 from "../assets/images/blogImg1.jpg";
 import BlogImage2 from "../assets/images/blogImg2.png";
 import BlogImage3 from "../assets/images/blogImg3.jpg";
 import { Button } from "react-bootstrap";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-AOS.init();
+import { ArrowRight } from "lucide-react";
 
 const blogData = [
   {
@@ -66,13 +64,19 @@ function AppBlog() {
                   className="holder"
                 >
                   <Card>
-                    <Card.Img variant="top" src={blog.image} />
+                    <Image
+                      src={blog.image}
+                      width={800}
+                      height={520}
+                      sizes="(max-width: 767px) 100vw, 33vw"
+                      alt={blog.title}
+                    />
                     <Card.Body>
                       <time>{blog.time}</time>
                       <Card.Title>{blog.title}</Card.Title>
                       <Card.Text>{blog.description}</Card.Text>
                       <Button href={blog.link}>
-                        Leer mas <i className="fas fa-chevron-right"></i>
+                        Leer más <ArrowRight aria-hidden="true" size={16} />
                       </Button>
                     </Card.Body>
                   </Card>

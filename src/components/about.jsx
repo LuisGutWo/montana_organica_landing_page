@@ -1,13 +1,9 @@
+import Image from "next/image";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
 import AboutImg from "../assets/images/nosotros-1-1024x682.jpg";
 import AboutLogos from "../assets/images/iconos_vegan_gluten_non_white.png";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-AOS.init();
 
 function AppAbout() {
   return (
@@ -23,6 +19,8 @@ function AppAbout() {
           <Col sm={6}>
             <Image
               src={AboutImg}
+              width={1024}
+              height={682}
               alt="Productos orgánicos de Montaña Orgánica"
               data-aos="fade-right"
               data-aos-offset="200"
@@ -46,12 +44,14 @@ function AppAbout() {
             </p>
             <br />
             <div className="progress-block">
-              <img
+              <Image
                 alt="Certificaciones: Orgánico, Sin Gluten, Vegano"
                 data-aos="fade-left"
                 data-aos-offset="100"
                 data-aos-easing="ease-in-sine"
                 src={AboutLogos}
+                width={500}
+                height={120}
               />
             </div>
           </Col>

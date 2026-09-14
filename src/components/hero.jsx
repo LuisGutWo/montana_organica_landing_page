@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import CarouselImage1 from "../assets/images/Banner-Rose-tea_Mesa-de-trabajo-1-copia.png";
@@ -52,13 +53,13 @@ const AppHero = React.memo(function AppHero() {
         {heroData.map((hero) => (
           <Carousel.Item key={hero.id}>
             <div className="hero-carousel-img-wrapper">
-              <img
-                className="d-block w-100"
+              <Image
                 src={hero.image}
                 alt={hero.alt}
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
+                fill
+                priority={hero.id === 1}
+                sizes="100vw"
+                className="d-block w-100 object-fit-cover"
               />
               {hero.cta && (
                 <div
