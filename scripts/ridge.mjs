@@ -50,9 +50,9 @@ const BOTTOM = 0;
 const yFor = (msnm) => H - ((msnm - BOTTOM) / (TOP - BOTTOM)) * H;
 
 /** Convierte un perfil normalizado en una polilínea entre dos cotas. */
-function toPath(h, loM, hiM, close) {
+function toPath(h, loM, hiM, close, sangrado = 0) {
   const pts = h.map((v, i) => {
-    const x = (i / (h.length - 1)) * W;
+    const x = -sangrado + (i / (h.length - 1)) * (W + sangrado * 2);
     const y = yFor(loM + v * (hiM - loM));
     return `${x.toFixed(1)},${y.toFixed(1)}`;
   });
@@ -60,16 +60,74 @@ function toPath(h, loM, hiM, close) {
   return close ? `${d}L${W},${H}L0,${H}Z` : d;
 }
 
+/** Construye solo las gorras de nieve que quedan por encima de una cota. */
+function toSnowPath(h, loM, hiM, snowM, sangrado = 0) {
+  const threshold = (snowM - loM) / (hiM - loM);
+  const xFor = (i) => -sangrado + (i / (h.length - 1)) * (W + sangrado * 2);
+  const yForIndex = (i) => yFor(loM + h[i] * (hiM - loM));
+  const segmentos = [];
+  let segmento = [];
+
+  const agregar = (i, j) => {
+    const t = (threshold - h[i]) / (h[j] - h[i]);
+    const x = xFor(i) + (xFor(j) - xFor(i)) * t;
+    segmento.push(`${x.toFixed(1)},${yFor(snowM).toFixed(1)}`);
+  };
+
+  for (let i = 0; i < h.length - 1; i += 1) {
+    const arriba = h[i] >= threshold;
+    const siguienteArriba = h[i + 1] >= threshold;
+    if (arriba && segmento.length === 0) {
+      segmento.push(`${xFor(i).toFixed(1)},${yForIndex(i).toFixed(1)}`);
+    }
+    if (arriba && siguienteArriba) {
+      segmento.push(`${xFor(i + 1).toFixed(1)},${yForIndex(i + 1).toFixed(1)}`);
+    } else if (arriba !== siguienteArriba) {
+      agregar(i, i + 1);
+      if (arriba) segmentos.push(segmento);
+      segmento = siguienteArriba
+        ? [`${xFor(i + 1).toFixed(1)},${yForIndex(i + 1).toFixed(1)}`]
+        : [];
+    }
+  }
+  if (segmento.length) segmentos.push(segmento);
+
+  return segmentos
+    .map((puntos) => {
+      const base = puntos
+        .slice()
+        .reverse()
+        .map((punto) => {
+          const [x, y] = punto.split(",").map(Number);
+          return `${x.toFixed(1)},${(y + 18).toFixed(1)}`;
+        });
+      return `M${puntos.join("L")}L${base.join("L")}Z`;
+    })
+    .join("");
+}
+
 // Tres crestas escalonadas: fondo (lejana), media, primer plano.
-const fondo = ridge(20240117, 8, 0.52, 0.34, 0.2);   // cordillera lejana
-const media = ridge(77010405, 8, 0.55, 0.16, 0.46);   // cordillera media
-const frente = ridge(41220930, 8, 0.58, 0.06, 0.12);  // lomas del primer plano
+const fondo = ridge(20240117, 8, 0.52, 0.34, 0.2); // cordillera lejana
+const media = ridge(77010405, 8, 0.55, 0.16, 0.46); // cordillera media
+const frente = ridge(41220930, 8, 0.58, 0.06, 0.12); // lomas del primer plano
 
 // Perspectiva atmosferica: la cresta lejana aclara, la cercana oscurece.
 const capas = [
-  { id: "cresta-fondo", d: toPath(fondo, 3400, 5150, true), fill: "#243C31" },
-  { id: "cresta-media", d: toPath(media, 2300, 4250, true), fill: "#182A21" },
-  { id: "cresta-frente", d: toPath(frente, 700, 2500, true), fill: "#0A120E" },
+  {
+    id: "cresta-fondo",
+    d: toPath(fondo, 3400, 5150, true, 120),
+    fill: "#243C31",
+  },
+  {
+    id: "cresta-media",
+    d: toPath(media, 2300, 4250, true, 120),
+    fill: "#182A21",
+  },
+  {
+    id: "cresta-frente",
+    d: toPath(frente, 700, 2500, true, 120),
+    fill: "#0A120E",
+  },
 ];
 
 // Janca es, literalmente, el piso de la nieve: por encima de 4800 la cresta encala.
@@ -82,7 +140,11 @@ for (let m = 4800; m >= 1200; m -= 400) {
   const t = (m - 3400) / (5150 - 3400);
   if (t < 0 || t > 1) {
     // Bajo la cresta de fondo la curva corre recta: es la línea de cota.
-    niveles.push({ m, d: `M0,${yFor(m).toFixed(1)}L${W},${yFor(m).toFixed(1)}`, plena: false });
+    niveles.push({
+      m,
+      d: `M0,${yFor(m).toFixed(1)}L${W},${yFor(m).toFixed(1)}`,
+      plena: false,
+    });
     continue;
   }
   // Recorta la cresta de fondo a la altura de la curva.
@@ -93,7 +155,11 @@ for (let m = 4800; m >= 1200; m -= 400) {
       pts.push(`${x.toFixed(1)},${yFor(m).toFixed(1)}`);
     }
   }
-  niveles.push({ m, d: pts.length > 1 ? `M${pts[0]}L${pts[pts.length - 1]}` : "", plena: true });
+  niveles.push({
+    m,
+    d: pts.length > 1 ? `M${pts[0]}L${pts[pts.length - 1]}` : "",
+    plena: true,
+  });
 }
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" preserveAspectRatio="none" role="img" aria-label="Perfil de la cordillera andina con sus curvas de nivel">
@@ -101,16 +167,18 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" wid
      20240117 / 77010405 / 41220930). Encuadre 0-5200 msnm. No es una foto ni un trazo
      a mano: es una sección topográfica sintética, reproducible ejecutando el script. -->
 <title>Perfil de la cordillera andina</title>
-<defs>
-<clipPath id="sobre-la-linea-de-nieve"><rect x="0" y="0" width="${W}" height="${yFor(NIEVE).toFixed(1)}"/></clipPath>
-</defs>
 <g id="curvas" fill="none" stroke="#EDE7D8" stroke-width="1" opacity=".16">
-${niveles.filter((n) => n.d).map((n) => `<path d="${n.d}" stroke-dasharray="${n.plena ? "none" : "2 7"}"/>`).join("\n")}
+${niveles
+  .filter((n) => n.d)
+  .map(
+    (n) => `<path d="${n.d}" stroke-dasharray="${n.plena ? "none" : "2 7"}"/>`,
+  )
+  .join("\n")}
 </g>
 <g id="crestas">
 ${capas.map((c) => `<path id="${c.id}" d="${c.d}" fill="${c.fill}"/>`).join("\n")}
-<g id="nieve" clip-path="url(#sobre-la-linea-de-nieve)">
-<path d="${toPath(fondo, 3400, 5150, true)}" fill="#EDE7D8" opacity=".88"/>
+<g id="nieve">
+<path d="${toSnowPath(fondo, 3400, 5150, NIEVE, 120)}" fill="#EDE7D8" opacity=".88"/>
 </g>
 <path d="${dFondoAbierto}" fill="none" stroke="#EDE7D8" stroke-width="1.5" opacity=".5"/>
 </g>
@@ -118,4 +186,8 @@ ${capas.map((c) => `<path id="${c.id}" d="${c.d}" fill="${c.fill}"/>`).join("\n"
 `;
 
 fs.writeFileSync(process.argv[2], svg);
-console.log("escrito:", process.argv[2], `${(svg.length / 1024).toFixed(1)} KB`);
+console.log(
+  "escrito:",
+  process.argv[2],
+  `${(svg.length / 1024).toFixed(1)} KB`,
+);
