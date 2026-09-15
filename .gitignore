@@ -42,3 +42,6 @@ dist-ssr
 
 # Next.js
 .next
+
+# Impeccable machine-local config (this machine has no image generation)
+.impeccable/config.local.json

@@ -1,0 +1,439 @@
+/* =========================================================================
+   Montaña Orgánica · Pisos Ecológicos
+   El sistema: la página es un corte de altitud. Cada sección es un piso
+   ecológico y declara su propio suelo y su propia tinta; todo lo que vive
+   dentro se pinta desde esas variables y por eso funciona en cualquier banda.
+   ========================================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--janca);
+  color: var(--cal);
+  font-family: var(--fuente-texto), "Segoe UI", system-ui, sans-serif;
+  font-size: var(--t-cuerpo);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+}
+
+img,
+svg,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* -------------------------------------------------------------------------
+   1 · Los pisos
+   Cotas reales de la clasificación de Javier Pulgar Vidal. El scroll
+   desciende de la nieve a la costa, que es también el camino que hace el
+   producto: de la cordillera a la mesa en Lima.
+   ------------------------------------------------------------------------- */
+
+:root {
+  --janca: #101c17;
+  --puna: #0c3527;
+  --quechua: #0c684d;
+  --yunga: #c9913f;
+  --chala: #141f22;
+
+  --cal: #ede7d8;
+  --ichu: #8fae3c;
+
+  --riel: 6.5rem; /* ancho del riel de cotas en escritorio */
+  --limite: 74rem;
+  --margen: clamp(1.25rem, 4vw, 3.5rem);
+
+  /* Ritmo vertical: un solo compás para toda la página. */
+  --e1: 0.25rem;
+  --e2: 0.5rem;
+  --e3: 0.75rem;
+  --e4: 1rem;
+  --e5: 1.5rem;
+  --e6: 2rem;
+  --e7: 3rem;
+  --e8: 4.5rem;
+  --e9: clamp(4.5rem, 9vw, 8rem);
+
+  --t-cuerpo: clamp(1rem, 0.96rem + 0.2vw, 1.09rem);
+  --t-instrumento: 0.8125rem;
+
+  --curva: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+.piso {
+  position: relative;
+  background: var(--suelo);
+  color: var(--tinta);
+  padding-block: var(--e9);
+}
+
+/* Cada banda declara su luz. La contrastación de cada par está verificada:
+   tinta y tinta-2 pasan 4.5:1 sobre su propio suelo. */
+[data-piso="janca"] {
+  --suelo: #101c17;
+  --tinta: #ede7d8;
+  --tinta-2: #9fb3a7;
+  --vivo: #8fae3c;
+  --sobre-vivo: #101c17;
+  --vivo-tinta: #a8c74a;
+  --linea: rgba(237, 231, 216, 0.18);
+  --velo: rgba(237, 231, 216, 0.06);
+}
+
+[data-piso="puna"] {
+  --suelo: #0c3527;
+  --tinta: #ede7d8;
+  --tinta-2: #9bbda9;
+  --vivo: #a8c74a;
+  --sobre-vivo: #0c3527;
+  --vivo-tinta: #a8c74a;
+  --linea: rgba(237, 231, 216, 0.2);
+  --velo: rgba(237, 231, 216, 0.07);
+}
+
+[data-piso="quechua"] {
+  --suelo: #0c684d;
+  --tinta: #f2f5ea;
+  --tinta-2: #bee0cb;
+  --vivo: #d9ee6a;
+  --sobre-vivo: #102a20;
+  --vivo-tinta: #d9ee6a;
+  --linea: rgba(242, 245, 234, 0.24);
+  --velo: rgba(242, 245, 234, 0.08);
+}
+
+/* La yunga es la única banda encendida: suelo cálido, tinta oscura.
+   No es una excepción decorativa, es el acontecimiento tonal de la página. */
+[data-piso="yunga"] {
+  --suelo: #c9913f;
+  --tinta: #20130a;
+  --tinta-2: #3d2a10;
+  --vivo: #0c684d;
+  --sobre-vivo: #ede7d8;
+  --vivo-tinta: #0f3a2b;
+  --linea: rgba(32, 19, 10, 0.26);
+  --velo: rgba(32, 19, 10, 0.08);
+}
+
+[data-piso="chala"] {
+  --suelo: #141f22;
+  --tinta: #e6edea;
+  --tinta-2: #93a8a6;
+  --vivo: #8fae3c;
+  --sobre-vivo: #141f22;
+  --vivo-tinta: #a8c74a;
+  --linea: rgba(230, 237, 234, 0.18);
+  --velo: rgba(230, 237, 234, 0.06);
+}
+
+/* -------------------------------------------------------------------------
+   2 · Tipografía
+   Archivo lleva la voz (el eje de ancho hace de rotulación de zona);
+   Martian Mono es el instrumento: msnm, gramaje y precio. Monoespaciada
+   para medición, nunca de disfraz.
+   ------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.reclamo {
+  font-size: clamp(2.6rem, 6.4vw, 5rem);
+  font-stretch: 112%;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.zona {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  font-stretch: 108%;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+}
+
+.sub-zona {
+  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0 0 var(--e4);
+  max-width: 68ch;
+}
+
+.parrafo-guia {
+  max-width: 54ch;
+  color: var(--tinta-2);
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.25rem);
+  line-height: 1.55;
+}
+
+/* El instrumento: cotas, gramajes, precios. */
+.instrumento {
+  font-family: var(--fuente-instrumento), ui-monospace, monospace;
+  font-size: var(--t-instrumento);
+  font-weight: 500;
+  font-stretch: 100%;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cota {
+  font-family: var(--fuente-instrumento), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+/* -------------------------------------------------------------------------
+   3 · Superficies del navegador
+   Lo que no dibujamos también lleva el diseño.
+   ------------------------------------------------------------------------- */
+
+::selection {
+  background: var(--ichu);
+  color: #101c17;
+}
+
+:focus-visible {
+  outline: 2px solid var(--vivo-tinta, var(--ichu));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline-offset: 4px;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--linea);
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 180ms var(--curva);
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--linea, rgba(237, 231, 216, 0.2)) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--linea, rgba(237, 231, 216, 0.2));
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 99px;
+}
+
+input,
+textarea {
+  caret-color: var(--vivo-tinta, var(--ichu));
+}
+
+::placeholder {
+  color: var(--tinta-2);
+  opacity: 1;
+}
+
+/* -------------------------------------------------------------------------
+   4 · Primitivas
+   ------------------------------------------------------------------------- */
+
+.limite {
+  width: 100%;
+  max-width: var(--limite);
+  margin-inline: auto;
+  padding-inline: var(--margen);
+}
+
+/* La chapa de zona: el rótulo esmaltado que nombra el piso y su cota.
+   Se ancla al filo izquierdo; en esta página nada va centrado. */
+.chapa {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--e3);
+  padding-bottom: var(--e3);
+  border-bottom: 1px solid var(--linea);
+  margin-bottom: var(--e6);
+  color: var(--tinta-2);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+.chapa strong {
+  color: var(--tinta);
+  font-weight: 700;
+}
+
+.chapa-cota {
+  margin-left: auto;
+  color: var(--vivo-tinta);
+  white-space: nowrap;
+}
+
+/* Estrecho: la cota baja a su propia línea en vez de partir el rótulo. */
+@media (max-width: 640px) {
+  .chapa-cota {
+    width: 100%;
+    margin-left: 0;
+    margin-top: var(--e2);
+  }
+}
+
+/* La acción: barra de cal. No es un botón de framework. */
+.accion {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e2);
+  padding: 0.85rem 1.4rem;
+  border: 1px solid transparent;
+  background: var(--vivo);
+  color: var(--sobre-vivo);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 220ms var(--curva),
+    box-shadow 220ms var(--curva),
+    background-color 220ms var(--curva);
+}
+
+.accion:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.55);
+  text-decoration: none;
+}
+
+.accion:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.accion:disabled {
+  background: transparent;
+  border-color: var(--linea);
+  color: var(--tinta-2);
+  cursor: not-allowed;
+}
+
+.accion--linea {
+  background: transparent;
+  border-color: var(--linea);
+  color: var(--tinta);
+}
+
+.accion--linea:hover {
+  border-color: var(--tinta);
+  background: var(--velo);
+}
+
+.accion svg {
+  flex: none;
+}
+
+/* Guía: la línea de referencia que ata un dato a su cota. */
+.guia {
+  border: 0;
+  border-top: 1px dashed var(--linea);
+  margin: 0;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* -------------------------------------------------------------------------
+   5 · Movimiento
+   Un solo momento de autor: al entrar, la cordillera se asienta y el riel
+   de cotas se despliega. El resto son respuestas al puntero, no entradas.
+   ------------------------------------------------------------------------- */
+
+@keyframes asentar {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes subir-nivel {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
