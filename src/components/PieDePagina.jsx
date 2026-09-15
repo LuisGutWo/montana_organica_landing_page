@@ -102,7 +102,7 @@ export default function PieDePagina() {
         </p>
         <p>
           <a
-            href="https://www.lagmedia.pe/"
+            href="https://www.lagmedia.dev/"
             target="_blank"
             rel="noreferrer noopener"
           >
