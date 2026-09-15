@@ -12,8 +12,16 @@ const NOVEDADES = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
 )}`;
 
 const REDES = [
-  { nombre: "Facebook", enlace: "https://www.facebook.com/MontanaOrganicaPeru/", Icono: Facebook },
-  { nombre: "Instagram", enlace: "https://www.instagram.com/montanaorganicaperu/", Icono: Instagram },
+  {
+    nombre: "Facebook",
+    enlace: "https://www.facebook.com/MontanaOrganicaPeru/",
+    Icono: Facebook,
+  },
+  {
+    nombre: "Instagram",
+    enlace: "https://www.instagram.com/montanaorganicaperu/",
+    Icono: Instagram,
+  },
   { nombre: "WhatsApp", enlace: `https://wa.me/${WHATSAPP}`, Icono: WhatsApp },
 ];
 
@@ -31,22 +39,33 @@ export default function PieDePagina() {
     <footer className="pie">
       <div className="pie-corte">
         <div className="pie-marca">
-          <Image src={Marca} alt="" width={56} height={56} />
+          <Image src={Marca} alt="" width={100} height={100} />
           <p className="pie-mision">
-            Inspiramos bienestar a través de superalimentos orgánicos, sostenibles y
-            deliciosos. Nuestra misión es mejorar la calidad de vida de las familias
-            peruanas, promoviendo una alimentación consciente y responsable con el planeta.
+            Inspiramos bienestar a través de superalimentos orgánicos,
+            sostenibles y deliciosos. Nuestra misión es mejorar la calidad de
+            vida de las familias peruanas, promoviendo una alimentación
+            consciente y responsable con el planeta.
           </p>
         </div>
 
         <nav className="pie-indice" aria-label="Secciones">
           <h2 className="pie-titulo instrumento">La página</h2>
           <ul>
-            <li><a href="#cordillera">Origen</a></li>
-            <li><a href="#origen">Nosotros</a></li>
-            <li><a href="#catalogo">Catálogo</a></li>
-            <li><a href="#aliados">Tiendas</a></li>
-            <li><a href="#mesa">Contacto</a></li>
+            <li>
+              <a href="#cordillera">Origen</a>
+            </li>
+            <li>
+              <a href="#origen">Nosotros</a>
+            </li>
+            <li>
+              <a href="#catalogo">Catálogo</a>
+            </li>
+            <li>
+              <a href="#aliados">Tiendas</a>
+            </li>
+            <li>
+              <a href="#mesa">Contacto</a>
+            </li>
           </ul>
         </nav>
 
@@ -65,16 +84,32 @@ export default function PieDePagina() {
           {/* El boletín anterior sólo mostraba un alert: no había proveedor de
               correo detrás. Hasta que lo haya, las novedades salen por el canal
               que sí existe. */}
-          <a className="accion accion--linea pie-novedades" href={NOVEDADES} target="_blank" rel="noreferrer">
+          <a
+            className="accion accion--linea pie-novedades"
+            href={NOVEDADES}
+            target="_blank"
+            rel="noreferrer"
+          >
             <MessageCircle size={16} aria-hidden="true" />
             Recibe novedades por WhatsApp
           </a>
         </div>
       </div>
 
-      <p className="pie-firma instrumento">
-        © {new Date().getFullYear()} Montaña Orgánica &amp; LAGmedia · Lima, Perú
-      </p>
+      <div className="pie-firma instrumento">
+        <p className="pie-copyright">
+          © {new Date().getFullYear()} Copyright Montaña Orgánica
+        </p>
+        <p>
+          <a
+            href="https://www.lagmedia.pe/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Desarrollado por Lagmedia
+          </a>
+        </p>
+      </div>
 
       <button
         type="button"

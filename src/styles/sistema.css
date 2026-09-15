@@ -12,7 +12,6 @@
 }
 
 html {
-  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
 
@@ -171,7 +170,6 @@ h4 {
   font-weight: 800;
   line-height: 1.04;
   letter-spacing: -0.03em;
-  text-wrap: balance;
 }
 
 .reclamo {
@@ -252,11 +250,6 @@ a {
 
 a:hover {
   text-decoration-color: currentColor;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--linea, rgba(237, 231, 216, 0.2)) transparent;
 }
 
 *::-webkit-scrollbar {

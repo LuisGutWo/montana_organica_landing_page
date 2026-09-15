@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MessageCircle, MoveDown } from "lucide-react";
+import Marca from "../assets/images/montana-organica-500x500.png";
 import { CATALOGO, enlacePedido, precioPEN } from "../datos/catalogo";
 
 /**
@@ -27,13 +28,19 @@ export default function Cordillera() {
 
       <div className="limite cordillera-caja">
         <div className="cordillera-dicho">
-          <h1 className="reclamo">
-            Tu despensa empieza a cuatro mil metros
-          </h1>
+          <a
+            className="cordillera-marca"
+            href="#cordillera"
+            aria-label="Montaña Orgánica, ir al inicio"
+          >
+            <Image src={Marca} alt="" width={180} height={180} priority />
+          </a>
+          <h1 className="reclamo">Tu despensa empieza a cuatro mil metros</h1>
           <p className="parrafo-guia">
-            Montaña Orgánica produce superalimentos orgánicos en el Perú, sin químicos ni
-            aditivos, con certificación orgánica, libres de gluten y aptos para veganos.
-            Veintiocho productos, cada uno con su presentación y su precio a la vista.
+            Montaña Orgánica produce superalimentos orgánicos en el Perú, sin
+            químicos ni aditivos, con certificación orgánica, libres de gluten y
+            aptos para veganos. Veintiocho productos, cada uno con su
+            presentación y su precio a la vista.
           </p>
         </div>
 
@@ -58,12 +65,18 @@ export default function Cordillera() {
             <p className="clavo-cota cota">4 000 m · Salineras de Maras</p>
             <h2 className="sub-zona">{SAL.name}</h2>
             <p className="clavo-glosa">
-              Sal 100 % natural extraída en el Valle Sagrado de los Incas, Urubamba, Cusco.
+              Sal 100 % natural extraída en el Valle Sagrado de los Incas,
+              Urubamba, Cusco.
             </p>
             <p className="clavo-precio instrumento">
               {precioPEN(SAL.price)} <span>· {SAL.presentacion}</span>
             </p>
-            <a className="accion" href={enlacePedido(SAL)} target="_blank" rel="noreferrer">
+            <a
+              className="accion"
+              href={enlacePedido(SAL)}
+              target="_blank"
+              rel="noreferrer"
+            >
               <MessageCircle size={17} aria-hidden="true" />
               Pídelo por WhatsApp
             </a>
