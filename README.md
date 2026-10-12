@@ -53,6 +53,7 @@ No ejecutes `next dev` y `next start` al mismo tiempo en este proyecto. Ambos ut
 | `npm run lint` | Ejecuta ESLint sin warnings permitidos |
 | `npm run build` | Genera la build de producción |
 | `npm run start` | Sirve la build de producción |
+| `npm run imagenes` | Convierte a WebP las imágenes nuevas y reescribe sus rutas |
 
 Flujo recomendado antes de publicar:
 
@@ -98,8 +99,31 @@ src/
 
 - Los productos se cargan desde [`public/products.json`](public/products.json).
 - Las imágenes públicas se sirven desde [`public/image`](public/image).
-- Las imágenes importadas desde `src/assets/images` se procesan con `next/image`.
+- Las imágenes importadas desde `src/assets/images` las empaqueta Next con un hash en el nombre.
 - Los enlaces de tiendas y redes sociales están definidos en sus componentes correspondientes.
+
+### Imágenes: optimizadas en el repositorio, no en producción
+
+El optimizador de imágenes de Vercel está **apagado** (`images.unoptimized` en
+[`next.config.mjs`](next.config.mjs)). Este es un sitio de muestra con imágenes
+estáticas: nada cambia en ejecución, así que no hay razón para pagar una
+transformación por cada combinación de imagen, ancho y calidad que alguien
+llegue a pedir. Antes de apagarlo, la portada ofrecía 732 variantes distintas.
+
+La contraparte es que las fuentes tienen que entrar optimizadas al repositorio.
+De eso se encarga `npm run imagenes`, que convierte a WebP con sharp y achica
+lo que haga falta. **Córrelo cada vez que agregues una imagen**, antes de
+desplegar.
+
+```bash
+npm run imagenes -- --simular   # muestra qué haría, sin escribir
+npm run imagenes                # convierte y actualiza las rutas
+```
+
+El script cubre los dos orígenes —`public/image` y las imágenes que el código
+importa desde `src/assets`— y borra el original, que queda en el historial de
+git. Si agregas una foto grande, añádela también a la tabla `ANCHOS` del
+script: ahí está anotado, para cada una, el ancho al que de verdad se muestra.
 
 ## Contacto
 

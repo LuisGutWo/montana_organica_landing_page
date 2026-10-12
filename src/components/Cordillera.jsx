@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MessageCircle, MoveDown } from "lucide-react";
-import Marca from "../assets/images/montana-organica-500x500.png";
+import Marca from "../assets/images/montana-organica-500x500.webp";
 import { CATALOGO, enlacePedido, precioPEN } from "../datos/catalogo";
 
 /**

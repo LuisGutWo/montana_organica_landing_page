@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ArrowUp, MessageCircle } from "lucide-react";
-import Marca from "../assets/images/montana-organica-500x500.png";
+import Marca from "../assets/images/montana-organica-500x500.webp";
 import { Facebook, Instagram, WhatsApp } from "./IconosSociales";
 import { WHATSAPP } from "../datos/catalogo";
 

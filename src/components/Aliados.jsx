@@ -11,21 +11,21 @@ import { ArrowUpRight } from "lucide-react";
  * para enseñarlos todos, así que ahora se ven los 15 de una vez.
  */
 const ALIADOS = [
-  { id: 1, titulo: "Thika Thani", enlace: "https://shop.thikathani.com.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-2.png" },
-  { id: 2, titulo: "La Sanahoria", enlace: "https://www.lasanahoria.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-3.png" },
-  { id: 3, titulo: "La Colorada", enlace: "https://es.foursquare.com/v/la-colorada--bodega-org%C3%A1nica/550c9104498e2c17483d4f33", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-4.png" },
-  { id: 4, titulo: "Flora y Fauna", enlace: "https://www.florayfauna.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-5.png" },
-  { id: 5, titulo: "Edén Orgánico", enlace: "https://www.edenorganico.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-6.png" },
-  { id: 6, titulo: "Botánica Bio Market", enlace: "https://www.google.com/search?q=bot%C3%A1nica+bio+market+lima", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-7.png" },
-  { id: 7, titulo: "Bio Deli Orgánico", enlace: "https://biodeliorganico.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-8.png" },
-  { id: 8, titulo: "Oxahaus", enlace: "https://www.oxahaus.com/tienda-online/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-9.png" },
-  { id: 9, titulo: "Samaca Orgánico", enlace: "https://www.samacaorganico.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-10.png" },
-  { id: 10, titulo: "Ecotienda", enlace: "https://www.ecotienda.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-11.png" },
-  { id: 11, titulo: "La Bodega Orgánica", enlace: "https://www.labodegaorganica.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-12.png" },
-  { id: 12, titulo: "Shanti", enlace: "https://mapcarta.com/es/N5026684415", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-13.png" },
-  { id: 13, titulo: "Punto Gourmet", enlace: "https://web.facebook.com/puntogourmetperu/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-14.png" },
-  { id: 14, titulo: "Campos de Vida", enlace: "https://www.camposdevida.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-15.png" },
-  { id: 15, titulo: "Vacas Felices", enlace: "https://www.vacasfelices.com/tienda/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia.png" },
+  { id: 1, titulo: "Thika Thani", enlace: "https://shop.thikathani.com.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-2.webp" },
+  { id: 2, titulo: "La Sanahoria", enlace: "https://www.lasanahoria.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-3.webp" },
+  { id: 3, titulo: "La Colorada", enlace: "https://es.foursquare.com/v/la-colorada--bodega-org%C3%A1nica/550c9104498e2c17483d4f33", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-4.webp" },
+  { id: 4, titulo: "Flora y Fauna", enlace: "https://www.florayfauna.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-5.webp" },
+  { id: 5, titulo: "Edén Orgánico", enlace: "https://www.edenorganico.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-6.webp" },
+  { id: 6, titulo: "Botánica Bio Market", enlace: "https://www.google.com/search?q=bot%C3%A1nica+bio+market+lima", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-7.webp" },
+  { id: 7, titulo: "Bio Deli Orgánico", enlace: "https://biodeliorganico.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-8.webp" },
+  { id: 8, titulo: "Oxahaus", enlace: "https://www.oxahaus.com/tienda-online/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-9.webp" },
+  { id: 9, titulo: "Samaca Orgánico", enlace: "https://www.samacaorganico.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-10.webp" },
+  { id: 10, titulo: "Ecotienda", enlace: "https://www.ecotienda.pe/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-11.webp" },
+  { id: 11, titulo: "La Bodega Orgánica", enlace: "https://www.labodegaorganica.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-12.webp" },
+  { id: 12, titulo: "Shanti", enlace: "https://mapcarta.com/es/N5026684415", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-13.webp" },
+  { id: 13, titulo: "Punto Gourmet", enlace: "https://web.facebook.com/puntogourmetperu/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-14.webp" },
+  { id: 14, titulo: "Campos de Vida", enlace: "https://www.camposdevida.com/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia-15.webp" },
+  { id: 15, titulo: "Vacas Felices", enlace: "https://www.vacasfelices.com/tienda/", logo: "/image/stores/Marcas-MO_Mesa-de-trabajo-1-copia.webp" },
 ];
 
 export default function Aliados() {
@@ -60,7 +60,6 @@ export default function Aliados() {
                   width={132}
                   height={132}
                   loading="lazy"
-                  sizes="132px"
                 />
                 <span className="aliado-nombre">{a.titulo}</span>
                 <ArrowUpRight className="aliado-flecha" size={15} aria-hidden="true" />

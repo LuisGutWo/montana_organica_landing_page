@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Tierra from "../assets/images/nosotros-1-1024x682.jpg";
+import Tierra from "../assets/images/nosotros-1-1024x682.webp";
 
 /**
  * Puna. Quiénes somos, dicho con el material de la lámina: un bloque de

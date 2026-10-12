@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import Lectura1 from "../assets/images/blogImg1.jpg";
-import Lectura2 from "../assets/images/blogImg2.png";
-import Lectura3 from "../assets/images/blogImg3.jpg";
+import Lectura1 from "../assets/images/blogImg1.webp";
+import Lectura2 from "../assets/images/blogImg2.webp";
+import Lectura3 from "../assets/images/blogImg3.webp";
 
 /**
  * Lecturas externas. Cierran la página en voz baja, después del contacto:

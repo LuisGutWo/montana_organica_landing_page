@@ -121,7 +121,6 @@ export default function Catalogo() {
                     width={180}
                     height={210}
                     loading="lazy"
-                    sizes="180px"
                   />
                 </div>
                 <div className="espec-ficha">

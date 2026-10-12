@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
-import Marca from "../assets/images/montana-organica-500x500.png";
+import Marca from "../assets/images/montana-organica-500x500.webp";
 import { PISOS, SUELO, TECHO, cotaEtiqueta, formatoCota } from "../datos/pisos";
 
 /** Posición vertical de una cota dentro del riel, en porcentaje. 0 % = techo. */
